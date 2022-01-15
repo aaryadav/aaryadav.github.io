@@ -1,0 +1,61 @@
+*
+  box-sizing: border-box
+
+html, body
+  margin: 0
+  padding: 0
+  font-family: "Inter", serif
+  font-size: 18px
+  line-height: 1.7em
+  background-color: #eee
+  color: #000
+
+a
+  &:link, &:visited, &:active
+    text-decoration: none
+    color: #000
+
+  &:hover
+    border-bottom: 2px solid #000
+
+ul
+  list-style-position: inside
+
+\::selection
+  color: #fff
+  background: #242424
+
+/* --------------------------------------
+
+#nav
+  float: left
+  width: 200px
+  padding: 40px
+
+#content
+  float: left
+  width: 650px
+  padding: 40px
+  text-align: justify
+
+.subtitle
+  color: #696969
+
+pre
+  padding: 2vh
+  margin-top: 2vh
+  margin-bottom: 2vh
+  border-radius: 3px
+
+code
+  background-color: #c9c9c9
+  padding: 3px
+  border-radius: 3px
+  font-size: 0.93em
+
+pre code
+  white-space: pre
+  background: none
+  padding: 0
+  border: none
+  border-radius: none

@@ -25,18 +25,20 @@ ul
   color: #fff
   background: #242424
 
-/* --------------------------------------
-
 #nav
-  float: left
-  width: 200px
-  padding: 40px
+  padding: 20px
 
 #content
   float: left
-  width: 650px
-  padding: 40px
+  padding: 20px
   text-align: justify
+
+  a
+    &:link, &:visited, &:active
+      border-bottom: 2px solid #8895A7
+
+    &:hover
+      border-bottom: 2px solid #000
 
 .subtitle
   color: #696969
@@ -59,3 +61,11 @@ pre code
   padding: 0
   border: none
   border-radius: none
+
+@media only screen and (min-width: 961px)
+  #content
+    width: 650px
+
+  #nav
+    float: left
+    width: 200px

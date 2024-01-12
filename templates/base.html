@@ -3,33 +3,47 @@
 
 <head>
   <meta charset="utf-8">
-    <meta name='viewport'
-      content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
-	<title>
-      {% block title %}
-        {% if section.title %}
-          Aaryaman - {{ section.title }}
-        {% else %}
-          Aaryaman - {{ page.title }}
-        {% endif %}
-      {% endblock title %}
-    </title>
-    <link rel="stylesheet" href="{{ get_url(path="style.css") | safe }}" type="text/css"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+  {% if page.title %}
+  {% set title = page.title %}
+  {% elif section.title %}
+  {% set title = section.title %}
+  {% elif config.title %}
+  {% set title = config.title %}
+  {% endif %}
+  {% if title %}
+  <title>Aaryaman · {{ title }}</title>
+  {% endif %}
+  </title>
+  {% set stylesheet_path = "style.css" %}
+  <link rel="stylesheet" href="{{ get_url(path=stylesheet_path) | safe }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <section class="section">
     <div class="container">
-    	<div id="nav">
-			<p><a href="/">aaryaman<a><p>
-			<p><a href="/blog/">blog</a></p>
-		</div>
-		<div id="content">
-      		{% block content %} {% endblock %}
-      	</div>
+      {% if config.extra.nav %}
+      <div id="nav">
+        {% for nav_item in config.extra.nav %}
+        {% set fallback_url = "/" %}
+
+        <!-- Use fallback_url if current_url is not available -->
+        {% if current_url is not defined %}
+        {% set current_url = fallback_url %}
+        {% endif %}
+        <p><a href="{{ nav_item.url }}" class="{% if nav_item.url == current_url %}active{% endif %}">
+            {{ nav_item.name }}
+          </a></p>
+        {% endfor %}
+      </div>
+
+      {% endif %}
+      <div id="content">
+        {% block content %} {% endblock %}
+      </div>
     </div>
   </section>
 </body>

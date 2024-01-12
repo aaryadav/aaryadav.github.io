@@ -10,10 +10,19 @@ build_search_index = false
 title = "Aaryaman"
 description = "rants and projects"
 
+[output]
+not_found_template = "404.html"
+
 [markdown]
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
 highlight_code = true
 
 [extra]
-# Put all your custom variables here
+nav = [
+  { name = "home", url = "/" },
+  { name = "blog", url = "/blog" },
+  { name = "projects", url = "/projects" },
+  { name = "bookshelf", url = "/bookshelf" },
+  { name = "resume", url = "/resume" }
+]

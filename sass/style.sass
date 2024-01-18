@@ -5,15 +5,21 @@ html, body
   margin: 0
   padding: 0
   font-family: "Inter", serif
-  font-size: 18px
+  font-size: 16px
   line-height: 1.7em
-  background-color: #eee
-  color: #000
+  background-color: #fff
+  color: #171717
+
+h1, h2, h3, h4, h5, h6
+  font-family: 'Fraunces', serif
+  font-weight: 400
+  font-variation-settings: "opsz" 72,"SOFT" 50
+  letter-spacing: -.03em
 
 a
   &:link, &:visited, &:active
     text-decoration: none
-    color: #000
+    color: #1F1F1F
 
   &:hover
     border-bottom: 2px solid #000
@@ -23,7 +29,7 @@ ul
 
 \::selection
   color: #fff
-  background: #242424
+  background: #171717
 
 #nav
   padding: 20px 32px
@@ -60,6 +66,13 @@ pre code
   padding: 0
   border: none
   border-radius: none
+
+
+blockquote
+  color: #4a4a4a
+  border-left: 4px solid #eee
+  padding-left: .75em
+  margin-left: .75em 
 
 @media only screen and (min-width: 961px)
   #content

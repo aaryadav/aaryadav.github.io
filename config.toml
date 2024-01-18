@@ -24,5 +24,6 @@ nav = [
   { name = "blog", url = "/blog" },
   { name = "projects", url = "/projects" },
   { name = "bookshelf", url = "/bookshelf" },
+  { name = "notes", url = "/notes" },
   { name = "resume", url = "/resume" }
 ]

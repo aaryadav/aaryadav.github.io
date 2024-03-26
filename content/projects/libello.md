@@ -2,7 +2,7 @@
 title = "Libello - Jupyter-like interactive programming environment."
 date = 2023-11-16
 +++
-{{resize_image(path="/libello.png", width=600, height=150, op="fit_width")}}
+{{resize_image(path="/libello.png", op="fit_width")}}
 
 [Google Colab](https://colab.research.google.com/) is a cloud-based Jupyter environment with notebook sharing and colaboration features.
 

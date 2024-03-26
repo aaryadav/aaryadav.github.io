@@ -1,2 +1,9 @@
-{% set image = resize_image(path=path, width=width, height=height, op=op) %}
-<img src="{{ image.url }}" />
+{% set image_small = resize_image(path=path, width=400, height=400, op=op) %}
+{% set image_medium = resize_image(path=path, width=550, height=800, op=op) %}
+{% set image_large = resize_image(path=path, width=600, height=600, op=op) %}
+
+<picture>
+    <source srcset="{{ image_small.url }}" media="(max-width: 480px)">
+    <source srcset="{{ image_medium.url }}" media="(max-width: 960px)">
+    <img src="{{ image_large.url }}" alt="Your alt text here">
+</picture>

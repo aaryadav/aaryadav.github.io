@@ -1,11 +1,39 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="blog-list">
-  <ul>
-    {% for page in section.pages %}
-    <li><a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
-    {% endfor %}
-  </ul>
+{% if section.content %}
+
+<div class="section-content">
+  {{ section.content | safe }}
 </div>
-{% endblock content %}
+
+{% endif %}
+<div class="blog-list">
+  {% for page in section.pages %}
+  <div class="note">
+    <h3>
+      <a href="{{ page.permalink | safe }}" class="note-link">
+        {{ page.title }}
+      </a>
+    </h3>
+    {% if page.summary %}
+    <div>{{ page.summary | safe }}</div>
+    {% else %}
+    <div>{{ page.content | safe }}</div>
+    {% endif %}
+    <div class="note-actions">
+      <div class="note-actions-left">
+        {% if page.summary %}
+        <a href="{{ page.permalink }}#continue-reading" class="read-more">Read more...</a>
+        {% endif %}
+      </div>
+      <div class="note-actions-right">
+        {% if page.extra.repo_url %}
+        <a href="{{page.extra.repo_url}}" class="repo-url">
+          Code ->
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </div> {% endfor %}
+</div> {% endblock content %}

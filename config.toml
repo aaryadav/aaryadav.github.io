@@ -21,9 +21,8 @@ highlight_code = true
 [extra]
 nav = [
   { name = "home", url = "/" },
-  { name = "blog", url = "/blog" },
+  { name = "posts", url = "/posts" },
   { name = "projects", url = "/projects" },
   { name = "bookshelf", url = "/bookshelf" },
-  { name = "notes", url = "/notes" },
   { name = "resume", url = "/resume" }
 ]

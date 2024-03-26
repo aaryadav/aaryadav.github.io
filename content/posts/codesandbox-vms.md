@@ -1,10 +1,7 @@
 +++
-title = "Notepad"
-template = "content.html"
+title = "How does codesandbox clone VMs quickly?"
+date = 2024-01-18
 +++
-
-# How does codesandbox clone VMs quickly?
-18-01-24
 
 Being able to spin up dev environments in the cloud almost instantly enables users to:
 - fork and run any piece of code you see online
@@ -14,6 +11,7 @@ Being able to spin up dev environments in the cloud almost instantly enables use
 Usecases like an online IDE where the environment does not need to keep running when the user has left, 
 or where the VM can be stopped when the user is inactive to save cost; mean that the user experience improves if you
 can reduce the delay between the user returning and the VM being ready to use.
+<!-- more -->
 
 Codesandbox shares how they achieved this in these two blog posts:
 - [How we clone a running VM in 2 seconds](https://codesandbox.io/blog/how-we-clone-a-running-vm-in-2-seconds)

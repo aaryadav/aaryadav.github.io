@@ -1,5 +1,5 @@
 +++
-title = "Notes on Virtualization"
+title = "Virtualization"
 date = 2024-01-11
 +++
 
@@ -10,6 +10,7 @@ Hi there\! This is aimed to be a comprehensive guide to virtualization.
 “Virtualization” is a term to describe the virtual version of a machine
 
 Let’s start at the beginning, you have an operating system running on some hardware. It’s a piece of software interacting with the hardware and abstracting away the hardware from you. 
+<!-- more -->
 
 You ask the question - Why can’t I run an operating system on top of my operating system? You can, you write software which emulates your hardware, ie, software which talks like your hardware does, now you can put an OS on top of that emulator.
 

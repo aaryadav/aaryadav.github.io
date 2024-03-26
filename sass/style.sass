@@ -5,7 +5,7 @@ html, body
   margin: 0
   padding: 0
   font-family: "Inter", serif
-  font-size: 16px
+  font-size: 15px
   line-height: 1.7em
   background-color: #fff
   color: #171717
@@ -15,6 +15,9 @@ h1, h2, h3, h4, h5, h6
   font-weight: 400
   font-variation-settings: "opsz" 72,"SOFT" 50
   letter-spacing: -.03em
+
+h3
+  font-size: 1.4em
 
 a
   &:link, &:visited, &:active
@@ -45,6 +48,32 @@ ul
     &:hover
       border-bottom: 2px solid #000
 
+#content .note-link
+  &:link, &:visited, &:active
+    border-bottom: none
+  
+  &:hover
+    border-bottom: 2px solid #000
+
+#content .read-more
+  &:link, &:visited, &:active
+    border-bottom: none
+    color: #3B82F6
+
+  &:hover
+    border-bottom: 1px solid #3B82F6
+
+
+.note-actions
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+.note-actions-left, .note-actions-right
+  display: flex
+  align-items: center
+
+
 .subtitle
   color: #696969
 
@@ -55,7 +84,7 @@ pre
   border-radius: 3px
 
 code
-  background-color: #c9c9c9
+  background-color: #E3E3E3
   padding: 3px
   border-radius: 3px
   font-size: 0.93em
@@ -81,3 +110,8 @@ blockquote
   #nav
     float: left
     width: 200px
+
+.note
+  padding-bottom: 25px
+  margin-bottom: 50px
+  border-bottom: 1px solid #b6bec9

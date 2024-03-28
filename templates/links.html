@@ -12,8 +12,18 @@
   {% for page in section.pages %}
   <div class="note">
     <h3>
-      <a href="{{ page.permalink | safe }}" class="note-link">
+      <a href="{{ page.extra.demo_url | default(value=page.permalink) | safe }}" 
+        target="{% if page.extra.demo_url %}_blank{% endif %}"
+        class="note-link {% if page.extra.demo_url %}has-demo{% else %}no-demo{% endif %}">
         {{ page.title }}
+        {% if page.extra.demo_url %}
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-arrow-up-right">
+          <path d="M7 7h10v10" />
+          <path d="M7 17 17 7" />
+        </svg>
+        {% endif %}
       </a>
     </h3>
     {% if page.summary %}
@@ -24,7 +34,7 @@
     <div class="note-actions">
       <div class="note-actions-left">
         {% if page.summary %}
-        <a href="{{ page.permalink }}#continue-reading" class="read-more">Read more...</a>
+        <a href="{{ page.permalink }}#continue-reading" class="read-more">Read more -></a>
         {% endif %}
       </div>
       <div class="note-actions-right">

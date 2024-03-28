@@ -25,14 +25,15 @@ a
     color: #1F1F1F
 
   &:hover
-    border-bottom: 2px solid #000
+    color: #1866fd
 
 ul
   list-style-position: inside
 
 \::selection
   color: #000
-  background: #D9F2FD
+  // background: #D9F2FD
+  background: #B3D4FC
 
 #nav
   padding: 20px 32px
@@ -43,26 +44,17 @@ ul
 
   a
     &:link, &:visited, &:active
-      border-bottom: 2px solid #8895A7
+      color: #1866fd
 
     &:hover
-      border-bottom: 2px solid #000
+      color: #000
 
 #content .note-link
   &:link, &:visited, &:active
-    border-bottom: none
-  
-  &:hover
-    border-bottom: 2px solid #000
-
-#content .read-more
-  &:link, &:visited, &:active
-    border-bottom: none
-    color: #3B82F6
+    color: #000
 
   &:hover
-    border-bottom: 1px solid #3B82F6
-
+    color: #1866fd
 
 .note-actions
   display: flex
@@ -72,7 +64,6 @@ ul
 .note-actions-left, .note-actions-right
   display: flex
   align-items: center
-
 
 .subtitle
   color: #696969
@@ -96,12 +87,11 @@ pre code
   border: none
   border-radius: none
 
-
 blockquote
   color: #4a4a4a
   border-left: 4px solid #2C88D9
   padding-left: .75em
-  margin-left: 0 
+  margin-left: 0
 
 @media only screen and (min-width: 961px)
   #content
@@ -115,3 +105,7 @@ blockquote
   padding-bottom: 25px
   margin-bottom: 50px
   border-bottom: 1px solid #b6bec9
+
+
+.note-link.has-demo:hover
+  color: #1866fd

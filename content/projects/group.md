@@ -1,5 +1,5 @@
 +++
-title = "Minimal group chat app with gpt bot"
+title = "Group chat app with gpt bot"
 date = 2023-03-09
 [extra]
 repo_url = "https://github.com/aaryadav/chatbot"

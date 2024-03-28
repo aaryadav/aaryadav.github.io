@@ -1,6 +1,9 @@
 +++
 title = "Libello - Jupyter-like interactive programming environment."
 date = 2023-11-16
+
+[extra]
+demo_url = "https://libello.aaryaman.xyz"
 +++
 {{resize_image(path="/libello.png", op="fit_width")}}
 

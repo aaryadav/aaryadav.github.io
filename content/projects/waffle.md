@@ -3,7 +3,6 @@ title = "Waffle - ebook reader"
 date = 2023-07-25
 [extra]
 repo_url = "https://github.com/aaryadav/waffle"
-demo_url = "https://waffle.vercel.app"
 +++
 
 {{resize_image(path="/waffle.png", op="fit_width")}}

@@ -3,7 +3,7 @@ title = "Orb - chat with codebase"
 date = 2024-02-27
 
 [extra]
-demo_url = "https://orb.aaryaman.xyz"
+demo_url = "https://orb.superwrapper.xyz/"
 +++
 {{resize_image(path="/orb.png", op="fit_width")}}
 

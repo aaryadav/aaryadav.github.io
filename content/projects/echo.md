@@ -3,7 +3,6 @@ title = "Echo - UI for talking to LLMs"
 date = 2023-12-28
 [extra]
 repo_url = "https://github.com/aaryadav/lumen"
-demo_url = "https://echo.aaryaman.xyz"
 +++
 
 Combining large language models with other tools and custom UIs enables building helpful agents and "answer engines".

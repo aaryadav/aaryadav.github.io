@@ -10,9 +10,6 @@ build_search_index = false
 title = "Aaryaman"
 description = "rants and projects"
 
-[output]
-not_found_template = "404.html"
-
 [markdown]
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
@@ -24,5 +21,6 @@ nav = [
   { name = "posts", url = "/posts" },
   { name = "projects", url = "/projects" },
   { name = "bookshelf", url = "/bookshelf" },
+  { name = "notepad", url = "/notepad" },
   { name = "resume", url = "/aaryaman_yadav_resume_24.pdf" }
 ]

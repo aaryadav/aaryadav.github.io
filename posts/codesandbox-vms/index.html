@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+  
+  
+  
+  
+  <title>Aaryaman · How does codesandbox clone VMs quickly?</title>
+  
+  </title>
+  
+  <link rel="stylesheet" href="https://aaryadav.github.io/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+
+  <section class="section">
+    <div class="container">
+      
+      <div id="nav">
+        <h3>Aaryaman <br />Yadav</h3>
+        
+        
+
+        <!-- Use fallback_url if current_url is not available -->
+        
+        <li>
+          <a href="&#x2F;" class="">
+            home
+          </a>
+        </li>
+        
+        
+
+        <!-- Use fallback_url if current_url is not available -->
+        
+        <li>
+          <a href="&#x2F;posts" class="">
+            posts
+          </a>
+        </li>
+        
+        
+
+        <!-- Use fallback_url if current_url is not available -->
+        
+        <li>
+          <a href="&#x2F;projects" class="">
+            projects
+          </a>
+        </li>
+        
+        
+
+        <!-- Use fallback_url if current_url is not available -->
+        
+        <li>
+          <a href="&#x2F;bookshelf" class="">
+            bookshelf
+          </a>
+        </li>
+        
+        
+
+        <!-- Use fallback_url if current_url is not available -->
+        
+        <li>
+          <a href="&#x2F;notepad" class="">
+            notepad
+          </a>
+        </li>
+        
+        
+
+        <!-- Use fallback_url if current_url is not available -->
+        
+        <li>
+          <a href="&#x2F;aaryaman_yadav_resume_24.pdf" class="">
+            resume
+          </a>
+        </li>
+        
+      </div>
+
+      
+      <div id="content">
+        
+
+
+<div class="blog-meta">
+  <h2 class="title">How does codesandbox clone VMs quickly?</h2>
+  <p class="subtitle">2024-01-18</p>
+</div>
+
+
+
+
+
+
+<div class="blog-content">
+  <p>Being able to spin up dev environments in the cloud almost instantly enables users to:</p>
+<ul>
+<li>fork and run any piece of code you see online</li>
+<li>spin up a disposable environment to review someone's PR</li>
+<li>create different environments for different branches</li>
+</ul>
+<p>Usecases like an online IDE where the environment does not need to keep running when the user has left, 
+or where the VM can be stopped when the user is inactive to save cost; mean that the user experience improves if you
+can reduce the delay between the user returning and the VM being ready to use.</p>
+<span id="continue-reading"></span>
+<p>Codesandbox shares how they achieved this in these two blog posts:</p>
+<ul>
+<li><a href="https://codesandbox.io/blog/how-we-clone-a-running-vm-in-2-seconds">How we clone a running VM in 2 seconds</a></li>
+<li><a href="https://codesandbox.io/blog/cloning-microvms-using-userfaultfd">Cloning microVMs by sharing memory through userfaultfd</a></li>
+</ul>
+<p>In the first blog they describe how they reduced the time to clone a VM -
+start another VM with the snapshot of the intial VM's state.
+Cloning involves the following steps:</p>
+<ol>
+<li>Pause VM</li>
+<li>Save snapshot</li>
+<li>Copy memory files</li>
+<li>Start new VM from those files</li>
+</ol>
+<p>Steps 2 and 3 take up the most time.</p>
+<p>Firecracker does not load the entire snapshot file into memory, instead it uses <code>mmap</code>
+which reserves a space in memory which points to the actual location of file on disk, 
+the only parts loaded into memory are the ones that are actually read.</p>
+<p>So when you write to memory the changes are not synced to the actual file on disk,
+they are synced when you call <code>create_snapshot</code>, these saves then take too long to write.
+However passing <code>MAP_SHARED</code> to mmap keeps syncing the changes to the backing file.
+So only a little amount is left to be synced when we call <code>create_snapshot</code></p>
+<p>Saving a snapshot is now faster.</p>
+<p>To reduce the time for copying these snapshots, we do not copy the memory files byte-for-byte, 
+instead the new VM uses the same data as the old VM. 
+Whenever the new VM needs to make a change to its data, 
+it will copy the data from the old VM and apply the change to that data.</p>
+<p>(Interestingly this is the default behaviour of the VM when it comes to writing a snapshot, 
+i.e. it creates a copy of the memory instead of writing to the original file on disk.)</p>
+
+</div>
+
+
+      </div>
+    </div>
+  </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.expand-btn').forEach(function (button) {
+        button.addEventListener('click', function () {
+          var img = this.previousElementSibling;
+          var largeImgUrl = img.getAttribute('data-large-image-url');
+
+          var fullscreenDiv = document.createElement('div');
+          fullscreenDiv.setAttribute('class', 'fullscreen-image');
+          fullscreenDiv.innerHTML = `
+             <img src="${largeImgUrl}" alt="Expanded Image">
+             <span class="close-msg"><strong>&#96;ESC&#96;</strong> to close</span>
+             <button class="close-btn">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x">
+                     <path d="M18 6 6 18"/>
+                     <path d="m6 6 12 12"/>
+                 </svg>
+             </button>
+          `;
+          document.body.appendChild(fullscreenDiv);
+          fullscreenDiv.style.display = 'flex';
+
+
+          var closeBtn = fullscreenDiv.querySelector('.close-btn');
+          closeBtn.addEventListener('click', function () {
+            fullscreenDiv.style.display = 'none';
+          });
+
+          document.addEventListener('keydown', function (event) {
+            if (event.key === 'Esc' || event.key === 'Escape') {
+              fullscreenDiv.style.display = 'none';
+            }
+          });
+
+          fullscreenDiv.addEventListener('click', function (event) {
+            if (event.target === fullscreenDiv) {
+              fullscreenDiv.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>

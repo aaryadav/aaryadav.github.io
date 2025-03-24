@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+  
+  
+  
+  
+  <title>Aaryaman · Bookshelf</title>
+  
+  </title>
+  
+  <link rel="stylesheet" href="https://aaryadav.github.io/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+
+  <section class="section">
+    <div class="container">
+      
+      <div id="nav">
+        <h3>Aaryaman <br />Yadav</h3>
+        
+        
+
+        <!-- Use fallback_url if current_url is not available -->
+        
+        <li>
+          <a href="&#x2F;" class="">
+            home
+          </a>
+        </li>
+        
+        
+
+        <!-- Use fallback_url if current_url is not available -->
+        
+        <li>
+          <a href="&#x2F;posts" class="">
+            posts
+          </a>
+        </li>
+        
+        
+
+        <!-- Use fallback_url if current_url is not available -->
+        
+        <li>
+          <a href="&#x2F;projects" class="">
+            projects
+          </a>
+        </li>
+        
+        
+
+        <!-- Use fallback_url if current_url is not available -->
+        
+        <li>
+          <a href="&#x2F;bookshelf" class="">
+            bookshelf
+          </a>
+        </li>
+        
+        
+
+        <!-- Use fallback_url if current_url is not available -->
+        
+        <li>
+          <a href="&#x2F;notepad" class="">
+            notepad
+          </a>
+        </li>
+        
+        
+
+        <!-- Use fallback_url if current_url is not available -->
+        
+        <li>
+          <a href="&#x2F;aaryaman_yadav_resume_24.pdf" class="">
+            resume
+          </a>
+        </li>
+        
+      </div>
+
+      
+      <div id="content">
+        
+
+
+
+
+
+
+
+<div class="blog-content">
+  <p>Some of the books I've read:</p>
+<ul>
+<li>Project Hail Mary</li>
+<li>The Three Body Problem</li>
+</ul>
+
+</div>
+
+
+      </div>
+    </div>
+  </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.expand-btn').forEach(function (button) {
+        button.addEventListener('click', function () {
+          var img = this.previousElementSibling;
+          var largeImgUrl = img.getAttribute('data-large-image-url');
+
+          var fullscreenDiv = document.createElement('div');
+          fullscreenDiv.setAttribute('class', 'fullscreen-image');
+          fullscreenDiv.innerHTML = `
+             <img src="${largeImgUrl}" alt="Expanded Image">
+             <span class="close-msg"><strong>&#96;ESC&#96;</strong> to close</span>
+             <button class="close-btn">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x">
+                     <path d="M18 6 6 18"/>
+                     <path d="m6 6 12 12"/>
+                 </svg>
+             </button>
+          `;
+          document.body.appendChild(fullscreenDiv);
+          fullscreenDiv.style.display = 'flex';
+
+
+          var closeBtn = fullscreenDiv.querySelector('.close-btn');
+          closeBtn.addEventListener('click', function () {
+            fullscreenDiv.style.display = 'none';
+          });
+
+          document.addEventListener('keydown', function (event) {
+            if (event.key === 'Esc' || event.key === 'Escape') {
+              fullscreenDiv.style.display = 'none';
+            }
+          });
+
+          fullscreenDiv.addEventListener('click', function (event) {
+            if (event.target === fullscreenDiv) {
+              fullscreenDiv.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>

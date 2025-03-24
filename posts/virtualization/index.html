@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+  
+  
+  
+  
+  <title>Aaryaman · Virtualization</title>
+  
+  </title>
+  
+  <link rel="stylesheet" href="https://aaryadav.github.io/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+
+  <section class="section">
+    <div class="container">
+      
+      <div id="nav">
+        <h3>Aaryaman <br />Yadav</h3>
+        
+        
+
+        <!-- Use fallback_url if current_url is not available -->
+        
+        <li>
+          <a href="&#x2F;" class="">
+            home
+          </a>
+        </li>
+        
+        
+
+        <!-- Use fallback_url if current_url is not available -->
+        
+        <li>
+          <a href="&#x2F;posts" class="">
+            posts
+          </a>
+        </li>
+        
+        
+
+        <!-- Use fallback_url if current_url is not available -->
+        
+        <li>
+          <a href="&#x2F;projects" class="">
+            projects
+          </a>
+        </li>
+        
+        
+
+        <!-- Use fallback_url if current_url is not available -->
+        
+        <li>
+          <a href="&#x2F;bookshelf" class="">
+            bookshelf
+          </a>
+        </li>
+        
+        
+
+        <!-- Use fallback_url if current_url is not available -->
+        
+        <li>
+          <a href="&#x2F;notepad" class="">
+            notepad
+          </a>
+        </li>
+        
+        
+
+        <!-- Use fallback_url if current_url is not available -->
+        
+        <li>
+          <a href="&#x2F;aaryaman_yadav_resume_24.pdf" class="">
+            resume
+          </a>
+        </li>
+        
+      </div>
+
+      
+      <div id="content">
+        
+
+
+<div class="blog-meta">
+  <h2 class="title">Virtualization</h2>
+  <p class="subtitle">2024-01-11</p>
+</div>
+
+
+
+
+
+
+<div class="blog-content">
+  <p>Hi there! This is aimed to be a comprehensive guide to virtualization.</p>
+<p><del>Don’t know what virtualization is? Don’t worry you’ve come to the right place. Lol not at all</del></p>
+<p>“Virtualization” is a term to describe the virtual version of a machine</p>
+<p>Let’s start at the beginning, you have an operating system running on some hardware. It’s a piece of software interacting with the hardware and abstracting away the hardware from you. </p>
+<span id="continue-reading"></span>
+<p>You ask the question - Why can’t I run an operating system on top of my operating system? You can, you write software which emulates your hardware, ie, software which talks like your hardware does, now you can put an OS on top of that emulator.</p>
+<p>This in effect is a virtual machine.</p>
+<p>Now the host OS is still performing all of it’s functions and your hardware resources are divided among the different processes/applications, one of them being your VM.</p>
+<p>So can you imagine that the VM OS either needs to be lighter than the host OS to function at the same speed.</p>
+<p>This is fine. Why do you think we did this in the first place?</p>
+<ul>
+<li>For kicks</li>
+<li>If you had big hardware and you wanted to give people access to compute over the cloud you could run multiple VMs on your hardware with constraints of how much of the host resources can they use.</li>
+<li>Any application you run on your computer has a lot of “dependencies”, say you make a simple python application. The python version you’re using is one of the dependency. Python uses a lot of little libraries from your OS to work. These are all dependencies. So if you had to put your application up on someone else’s computer you would have to install all these dependencies there as well. What if instead you could just put your entire OS on their machine.</li>
+</ul>
+<p>So what we do is put up the most stripped down version of our OS that can still run our application, on the the computer running all day (cloud).</p>
+<p>These still take time to start up tho.</p>
+<p>[WHY?]</p>
+<p>So we made “containers” these are lightweight containers.</p>
+<p>They spin up quickly and provide the isolation we wanted from VMs.</p>
+<p>But, as I recently found out they are apparently not as isolated from the host OS as we would want from a security pov.</p>
+<p>Enter microVMs.</p>
+<p>The best of both worlds.</p>
+<p>Lightweight, so they spin up fast.</p>
+<p>Provide more isolation than containers.</p>
+<p>From my observation it also seems that they have persistent state and containers do not because you create and use a filesystem file to start a microvm.</p>
+<p>Although I do feel like the same can be achieved with containers by mounting that filesystem to the container. I’ve not seen examples of this because most people using containers don’t really need a whole filesystem attached to their container.</p>
+<p>Whereas VMs which are typically used when providing compute access to someone also give them a filesystem.</p>
+<p>So now we come to the more interesting part which is the new type of virtualization.</p>
+<p>These might not strictly fit into what we think of as virtualization but they help us achieve the same goal - creating a machine agnostic isolated environment to run your code.</p>
+<p><strong>Browser</strong></p>
+<p>Your browser contains an engine/program_ _which runs javascript in a way that it does not have to interact with your host OS (<em>isolated environment</em>).</p>
+<p>This website’s developer wrote js code which could run on that engine and now the same code runs on any computer that opens this website (<em>machine agnostic</em>).</p>
+<p>With the advent of WebGPU, ie an engine in your browser which can run code on your GPU, many applications will perform some computation on your GPU before sending data to a server. This saves their bill and reduces your latency if done right. Win-win!</p>
+<p>An example of this is the famous dingboard which as yacine described, pushes some layers of the architecture used for segmentation on to the client.</p>
+<p><strong>Workers</strong></p>
+<p>Cloudfare workers are another example of this.</p>
+<p>This is not as machine agnostic as writing js for browsers as all browser js engines can run the same js code but the code written for a cloudfare worker runs only on a cloudfare worker.</p>
+<p>But this becomes less true since they have open sourced their worker runtime.</p>
+<p>Another benefit of virtualization is that it aids scaling. If you had an application running on a host OS and you wanted to scale vertically ie running the same application on better hardware you would have to start another machine with better hardware and move the OS and app there, whereas when your app sits in a vm/container you can just tweak the resources available to that container or quickly spin up another vm with the same resources (horizontal scaling).</p>
+<p>Cloudfare workers retain this benefit, in fact the whole point of using workers is to be able to deploy your app and forget about scaling, cloudfare takes care of both spinning up geographically spread out workers and allocating the resources to them.</p>
+
+</div>
+
+
+      </div>
+    </div>
+  </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.expand-btn').forEach(function (button) {
+        button.addEventListener('click', function () {
+          var img = this.previousElementSibling;
+          var largeImgUrl = img.getAttribute('data-large-image-url');
+
+          var fullscreenDiv = document.createElement('div');
+          fullscreenDiv.setAttribute('class', 'fullscreen-image');
+          fullscreenDiv.innerHTML = `
+             <img src="${largeImgUrl}" alt="Expanded Image">
+             <span class="close-msg"><strong>&#96;ESC&#96;</strong> to close</span>
+             <button class="close-btn">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x">
+                     <path d="M18 6 6 18"/>
+                     <path d="m6 6 12 12"/>
+                 </svg>
+             </button>
+          `;
+          document.body.appendChild(fullscreenDiv);
+          fullscreenDiv.style.display = 'flex';
+
+
+          var closeBtn = fullscreenDiv.querySelector('.close-btn');
+          closeBtn.addEventListener('click', function () {
+            fullscreenDiv.style.display = 'none';
+          });
+
+          document.addEventListener('keydown', function (event) {
+            if (event.key === 'Esc' || event.key === 'Escape') {
+              fullscreenDiv.style.display = 'none';
+            }
+          });
+
+          fullscreenDiv.addEventListener('click', function (event) {
+            if (event.target === fullscreenDiv) {
+              fullscreenDiv.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>
